@@ -12,7 +12,7 @@ public class TransactionController {
     }
 
     @PostMapping("/put/money/{destinationId}")
-    public void putMoney(Long destinationId, MoneyDto money) {
+    public void putMoney(@PathVariable Long destinationId, @PathVariable MoneyDto money) {
 
     }
 }

@@ -13,13 +13,13 @@ import java.util.Map;
 @Configuration
 public class KafkaConfig {
 
-    @Value("kafka.bootstrapAddress")
-    private String kafkaBootstrapAddress;
+    @Value("${kafka.bootstrapServers}")
+    private String kafkaBootstrapServers;
 
     @Bean
     KafkaAdmin kafkaAdmin() {
         Map<String, Object> config = new HashMap<>();
-        config.put(AdminClientConfig.BOOTSTRAP_SERVERS_CONFIG, kafkaBootstrapAddress);
+        config.put(AdminClientConfig.BOOTSTRAP_SERVERS_CONFIG, kafkaBootstrapServers);
         return new KafkaAdmin(config);
     }
 
