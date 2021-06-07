@@ -27,4 +27,14 @@ public class KafkaConfig {
     NewTopic atmActionTopic() {
         return new NewTopic("atm-request", 1, (short)1);
     }
+
+    @Bean
+    NewTopic atmCallbackTopic() {
+        return new NewTopic("atm-callback", 1, (short)1);
+    }
+
+    @Bean
+    NewTopic atmResponseTopic() {
+        return new NewTopic("atm-response", 1, (short)1);
+    }
 }
