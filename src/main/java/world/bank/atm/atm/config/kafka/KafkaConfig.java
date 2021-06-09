@@ -1,4 +1,4 @@
-package world.bank.atm.atm.config;
+package world.bank.atm.atm.config.kafka;
 
 import org.apache.kafka.clients.admin.AdminClientConfig;
 import org.apache.kafka.clients.admin.NewTopic;
@@ -16,6 +16,15 @@ public class KafkaConfig {
     @Value("${kafka.bootstrapServers}")
     private String kafkaBootstrapServers;
 
+    @Value("${kafka.topics.worldBank.request}")
+    private String topicWorldBankRequest;
+
+    @Value("${kafka.topics.worldBank.response}")
+    private String topicWorldBankResponse;
+
+    @Value("${kafka.topics.worldBank.callback}")
+    private String topicWorldBankCallback;
+
     @Bean
     KafkaAdmin kafkaAdmin() {
         Map<String, Object> config = new HashMap<>();
@@ -25,16 +34,16 @@ public class KafkaConfig {
 
     @Bean
     NewTopic atmActionTopic() {
-        return new NewTopic("atm-request", 1, (short)1);
+        return new NewTopic(topicWorldBankRequest, 1, (short)1);
     }
 
     @Bean
     NewTopic atmCallbackTopic() {
-        return new NewTopic("atm-callback", 1, (short)1);
+        return new NewTopic(topicWorldBankCallback, 1, (short)1);
     }
 
     @Bean
     NewTopic atmResponseTopic() {
-        return new NewTopic("atm-response", 1, (short)1);
+        return new NewTopic(topicWorldBankResponse, 1, (short)1);
     }
 }
