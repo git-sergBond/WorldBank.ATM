@@ -8,6 +8,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.kafka.core.DefaultKafkaProducerFactory;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.kafka.core.ProducerFactory;
+import org.springframework.messaging.Message;
 
 import java.util.Map;
 
@@ -18,7 +19,7 @@ public class KafkaProducerConfig {
     private String kafkaBootstrapServers;
 
     @Bean
-    public ProducerFactory<String, String> producerFactory() {
+    public ProducerFactory<Object, Message<String>> producerFactory() {
         Map<String, Object> confProps = Map.of(
                 ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, kafkaBootstrapServers,
                 ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class,
@@ -28,7 +29,7 @@ public class KafkaProducerConfig {
     }
 
     @Bean
-    public KafkaTemplate<String, String> kafkaTemplate() {
-        return new KafkaTemplate<String, String>(producerFactory());
+    public KafkaTemplate<Object, Message<String>> kafkaTemplate() {
+        return new KafkaTemplate<Object, Message<String>>(producerFactory());
     }
 }
