@@ -14,13 +14,9 @@ public class TransactionController {
 
     private final TransactionService transactionService;
 
-    //@PostMapping("/transact/money/from/{sourceId}/to/{destinationId}")
-    @PostMapping("/transact/money")
-    public void pay() {//(@PathVariable Long sourceId, @PathVariable Long destinationId, @RequestBody MoneyDto money) {
-        MoneyDto money = new MoneyDto();
-        money.setCurrencyType(CurrencyType.RUBLE);
-        money.setAmount(new BigDecimal(123));
-        transactionService.pay(1L,2L, money);
+    @PostMapping("/transact/money/from/{sourceId}/to/{destinationId}")
+    public void pay(@PathVariable Long sourceId, @PathVariable Long destinationId, @RequestBody MoneyDto money) {
+        transactionService.pay(sourceId,destinationId, money);
     }
 
     @PostMapping("/put/money/{destinationId}")
