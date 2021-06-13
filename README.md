@@ -1,6 +1,12 @@
 [SWAGGER-API](http://localhost:8090/atm/swagger-ui.html)
 ---
 
+Run local for development
+---
+```
+mvn install && mvn  spring-boot:run
+```
+
 Stack
 ---
 * Lang: Java GraalVM
