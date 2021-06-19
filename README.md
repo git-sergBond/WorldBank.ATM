@@ -38,7 +38,7 @@ sudo docker run --rm --net=host lensesio/fast-data-dev
 <a name="advhostkafka"><b>If you want to have the services remotely accessible</b></a>, then you may need to pass in your machine's <IP> address
 or hostname that other machines can use to access it:
 ```
-docker run --rm --net=host -e ADV_HOST=<IP> lensesio/fast-data-dev
+sudo docker run --rm --net=host -e ADV_HOST=<IP> lensesio/fast-data-dev
 ```
 Links:
 - [UI for Kafka](http://127.0.0.1:3030/)
