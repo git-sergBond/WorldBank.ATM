@@ -36,6 +36,6 @@ public class KafkaConfig {
 
     @Bean
     NewTopic atmResponseTopic() {
-        return new NewTopic(topicWorldBankResponse, 1, (short)1);
+        return new NewTopic(topicWorldBankResponse, 3, (short)1);
     }
 }

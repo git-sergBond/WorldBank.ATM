@@ -15,6 +15,7 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class TransactionDtoRequestProducer {
 
+    // TODO try replyProducer for delete useless Consumer
     private final KafkaTemplate<String, TransactionDto> kafkaTemplate;
 
     @Value("${kafka.topics.worldBank.request}")
@@ -28,7 +29,7 @@ public class TransactionDtoRequestProducer {
 
     public void pay(TransactionDto transactionDto) {
         ProducerRecord<String, TransactionDto> record = new ProducerRecord<>(requestTopic, "some-key", transactionDto);
-        //TODO try add headers by:
+        // TODO try add headers by:
         // 1 - HeaderMapper for  record.headers().add(KafkaHeaders.CORRELATION_ID, UUID.randomUUID().toString().getBytes());
         // 2 - Message<TransactionDto> m - MessageBuilder.withPayload().addHeader().build();
         record.headers()
