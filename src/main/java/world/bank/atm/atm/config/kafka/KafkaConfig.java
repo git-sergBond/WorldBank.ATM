@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.kafka.core.KafkaAdmin;
+import world.bank.atm.atm.constants.KafkaProperties;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -13,7 +14,7 @@ import java.util.Map;
 @Configuration
 public class KafkaConfig {
 
-    @Value("${kafka.bootstrapServers}")
+    @Value("${"+ KafkaProperties.BOOTSTRAP_SERVERS +"}")
     private String kafkaBootstrapServers;
 
     @Value("${kafka.topics.worldBank.reply}")
@@ -36,6 +37,6 @@ public class KafkaConfig {
 
     @Bean
     NewTopic atmResponseTopic() {
-        return new NewTopic(topicWorldBankResponse, 3, (short)1);
+        return new NewTopic(topicWorldBankResponse, 1, (short)1);
     }
 }

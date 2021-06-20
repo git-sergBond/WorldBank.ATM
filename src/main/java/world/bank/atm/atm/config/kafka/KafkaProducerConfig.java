@@ -10,6 +10,7 @@ import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.kafka.support.DefaultKafkaHeaderMapper;
 import org.springframework.kafka.support.converter.StringJsonMessageConverter;
 import org.springframework.kafka.support.serializer.JsonSerializer;
+import world.bank.atm.atm.constants.KafkaProperties;
 import world.bank.atm.atm.dto.TransactionDto;
 
 import java.util.Map;
@@ -17,7 +18,7 @@ import java.util.Map;
 @Configuration
 public class KafkaProducerConfig {
 
-    @Value("${kafka.bootstrapServers}")
+    @Value("${"+ KafkaProperties.BOOTSTRAP_SERVERS +"}")
     private String kafkaBootstrapServers;
 
     @Bean
