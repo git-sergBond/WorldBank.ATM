@@ -4,20 +4,17 @@ import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import world.bank.atm.atm.dto.MoneyDto;
 import world.bank.atm.atm.dto.TransactionDto;
-import world.bank.atm.atm.emums.CurrencyType;
-import world.bank.atm.atm.service.TransactionService;
-
-import java.math.BigDecimal;
+import world.bank.atm.atm.kafka.TransactionDtoRequestProducer;
 
 @RestController("/ext/atm/transaction")
 @AllArgsConstructor
 public class TransactionController {
 
-    private final TransactionService transactionService;
+    private final TransactionDtoRequestProducer transactionProducer;
 
     @PostMapping("/money/transact")
     public void pay(@RequestBody TransactionDto transactionDto) {
-        transactionService.pay(transactionDto);
+        transactionProducer.pay(transactionDto);
     }
 
     @PostMapping("/put/money/{destinationId}")

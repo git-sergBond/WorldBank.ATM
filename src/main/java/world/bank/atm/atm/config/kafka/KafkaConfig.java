@@ -16,10 +16,7 @@ public class KafkaConfig {
     @Value("${kafka.bootstrapServers}")
     private String kafkaBootstrapServers;
 
-    @Value("${kafka.topics.worldBank.request}")
-    private String topicWorldBankRequest;
-
-    @Value("${kafka.topics.worldBank.response}")
+    @Value("${kafka.topics.worldBank.reply}")
     private String topicWorldBankResponse;
 
     @Value("${kafka.topics.worldBank.callback}")
@@ -30,11 +27,6 @@ public class KafkaConfig {
         Map<String, Object> config = new HashMap<>();
         config.put(AdminClientConfig.BOOTSTRAP_SERVERS_CONFIG, kafkaBootstrapServers);
         return new KafkaAdmin(config);
-    }
-
-    @Bean
-    NewTopic atmActionTopic() {
-        return new NewTopic(topicWorldBankRequest, 1, (short)1);
     }
 
     @Bean
