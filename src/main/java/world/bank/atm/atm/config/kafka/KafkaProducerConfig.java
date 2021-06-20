@@ -7,6 +7,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.kafka.core.DefaultKafkaProducerFactory;
 import org.springframework.kafka.core.KafkaTemplate;
+import org.springframework.kafka.support.DefaultKafkaHeaderMapper;
 import org.springframework.kafka.support.converter.StringJsonMessageConverter;
 import org.springframework.kafka.support.serializer.JsonSerializer;
 import world.bank.atm.atm.dto.TransactionDto;
@@ -39,5 +40,10 @@ public class KafkaProducerConfig {
         KafkaTemplate<String, TransactionDto> template = new KafkaTemplate<>(producerTransactionDtoFactory());
         template.setMessageConverter(new StringJsonMessageConverter());
         return template;
+    }
+
+    @Bean
+    public DefaultKafkaHeaderMapper defaultKafkaHeaderMapper() {
+        return new DefaultKafkaHeaderMapper();
     }
 }
